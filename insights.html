@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights — Cloudcentria Security</title>
+<meta name="description" content="IAM Insights from Cloudcentria Security. Practitioner perspective on identity security, Zero Trust, PAM, and the hiring practices breaking the industry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:        #1A6B5A;
+  --teal-mid:    #22836E;
+  --teal-light:  #EAF4F0;
+  --teal-border: #C2DDD6;
+  --ink:         #0C1A17;
+  --ink-2:       #112019;
+  --text-h:      #111F1B;
+  --text-b:      #3E524D;
+  --text-m:      #7A8D87;
+  --surface:     #FFFFFF;
+  --surface-2:   #F5F8F7;
+  --border:      #E3EDEA;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--surface);color:var(--text-b);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(12,26,23,.07)}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-mark,.nav-logo-text{display:none}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-size:.83rem;font-weight:500;color:var(--text-m);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.nav-cta{display:inline-flex;align-items:center;background:var(--teal);color:#fff!important;font-size:.8rem;font-weight:600;padding:.55rem 1.4rem;border-radius:100px;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--teal-mid);transform:translateY(-1px)}
+
+.page-hero{padding:9rem 3rem 5rem;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1140px;margin:0 auto}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.08;letter-spacing:-.02em;color:var(--text-h);max-width:700px;margin-bottom:1.2rem}
+.page-hero h1 em{font-style:italic;color:var(--teal)}
+.page-hero p{font-size:1rem;font-weight:400;color:var(--text-m);max-width:600px;line-height:1.82}
+
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
+.eyebrow .line{width:28px;height:1.5px;background:var(--teal);flex-shrink:0;display:block}
+.eyebrow span{font-size:.67rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+
+.section{padding:6.5rem 3rem}
+.section-inner{max-width:1140px;margin:0 auto}
+h2.section-title,h2.engagement-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.12;letter-spacing:-.015em;color:var(--text-h);max-width:640px;margin-bottom:.9rem}
+h2.section-title em,h2.engagement-title em{font-style:italic;color:var(--teal)}
+.section-lead,.engagement-sub{font-size:.95rem;color:var(--text-m);max-width:560px;line-height:1.82;margin-bottom:3.5rem}
+
+.cta-section{background:var(--ink-2);padding:6rem 3rem}
+.cta-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.cta-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:.8rem;letter-spacing:-.01em}
+.cta-body{font-size:.93rem;color:rgba(255,255,255,.42);max-width:440px;line-height:1.78}
+.cta-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;background:#fff;color:var(--teal);font-size:.88rem;font-weight:600;padding:.85rem 2rem;border-radius:100px;transition:opacity .2s,transform .15s}
+.btn-white:hover{opacity:.92;transform:translateY(-1px)}
+.btn-outline-white{display:inline-flex;align-items:center;color:rgba(255,255,255,.5);font-size:.88rem;font-weight:500;border:1.5px solid rgba(255,255,255,.18);padding:.83rem 2rem;border-radius:100px;transition:border-color .2s,color .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal);color:#fff;font-size:.85rem;font-weight:600;padding:.78rem 1.8rem;border-radius:100px;transition:background .2s,transform .15s}
+.btn-teal:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;color:var(--teal);border:1.5px solid var(--teal-border);font-size:.85rem;font-weight:600;padding:.76rem 1.8rem;border-radius:100px;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--teal)}
+
+footer{background:var(--ink);padding:5rem 3rem 2.5rem}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:2rem}
+.footer-brand p{font-size:.82rem;color:rgba(255,255,255,.28);line-height:1.7;max-width:260px;margin-top:1rem}
+.footer-logo{margin-bottom:.3rem}
+.footer-col h4{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-col ul li a{font-size:.84rem;color:rgba(255,255,255,.36);transition:color .2s}
+.footer-col ul li a:hover{color:rgba(255,255,255,.72)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.18)}
+.footer-bottom a{color:rgba(255,255,255,.26)}
+
+.posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:2.5rem}
+.post-card{background:var(--surface);padding:2.2rem;transition:background .2s;cursor:pointer}
+.post-card:hover{background:var(--teal-light)}
+.post-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;padding:2.8rem}
+.post-tag{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);border:1px solid var(--teal-border);padding:.2rem .75rem;border-radius:100px;margin-bottom:.9rem;width:fit-content}
+.post-title{font-family:var(--serif);font-size:1.15rem;color:var(--text-h);line-height:1.3;margin-bottom:.7rem}
+.post-card.featured .post-title{font-size:1.7rem}
+.post-excerpt{font-size:.86rem;color:var(--text-b);line-height:1.72;flex:1}
+.post-meta{margin-top:1.5rem;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+.post-date{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-m)}
+.post-read{font-size:.78rem;color:var(--text-m)}
+.post-link{font-size:.82rem;font-weight:600;color:var(--teal);display:inline-flex;align-items:center;gap:.3rem}
+
+/* FEATURED POST */
+.featured-post{padding-bottom:3rem;margin-bottom:3rem;border-bottom:1px solid var(--border)}
+.featured-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:1rem}
+.featured-post .post-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.featured-post h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;color:var(--text-h);margin-bottom:.9rem;letter-spacing:-.01em}
+.featured-post h2 a{color:inherit;transition:color .2s}
+.featured-post h2 a:hover{color:var(--teal)}
+.featured-post .post-excerpt{font-size:.95rem;color:var(--text-b);line-height:1.82;margin-bottom:1.2rem;max-width:640px}
+.read-link{font-size:.84rem;font-weight:600;color:var(--teal);border-bottom:1px solid var(--teal-border);padding-bottom:.1rem;transition:border-color .2s}
+.read-link:hover{border-color:var(--teal)}
+
+/* POST LIST */
+.post-list{display:flex;flex-direction:column}
+.post-item{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border);transition:background .2s}
+.post-item:last-child{border-bottom:none}
+.post-item-left{flex:1}
+.post-item .post-meta{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem;flex-wrap:wrap}
+.post-item h3{font-family:var(--serif);font-size:1.15rem;line-height:1.3;color:var(--text-h);margin-bottom:.5rem}
+.post-item h3 a{color:inherit;transition:color .2s}
+.post-item h3 a:hover{color:var(--teal)}
+.post-item .post-excerpt{font-size:.86rem;color:var(--text-b);line-height:1.75}
+.post-item-right{flex-shrink:0;padding-top:.2rem}
+.post-arrow{font-size:1.1rem;color:var(--teal-border);transition:color .2s;font-weight:300}
+.post-item:hover .post-arrow{color:var(--teal)}
+
+.post-tag{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);border:1px solid var(--teal-border);padding:.18rem .65rem;border-radius:100px}
+.post-date{font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-m)}
+.post-read{font-size:.75rem;color:var(--text-m)}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.5rem;position:sticky;top:7rem}
+.sidebar-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:1.6rem 1.5rem}
+.sidebar-label{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.sidebar-card > p{font-size:.86rem;color:var(--text-b);line-height:1.75;margin-bottom:1.2rem}
+.sidebar-card .btn-teal{font-size:.8rem;padding:.65rem 1.4rem;width:100%;justify-content:center}
+
+/* TOPIC LIST */
+.topic-list{display:flex;flex-direction:column;gap:0}
+.topic-item{display:flex;align-items:center;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color .15s}
+.topic-item:last-child{border-bottom:none}
+.topic-item span:first-child{font-size:.84rem;color:var(--text-b);transition:color .15s}
+.topic-item:hover span:first-child{color:var(--teal)}
+.topic-count{font-size:.72rem;font-weight:600;color:var(--text-m);background:var(--surface);border:1px solid var(--border);padding:.1rem .5rem;border-radius:100px;min-width:24px;text-align:center}
+
+/* LINKEDIN POSTS */
+.linkedin-posts{display:flex;flex-direction:column;gap:.8rem}
+.linkedin-item{display:block;font-size:.83rem;color:var(--text-b);line-height:1.65;padding:.9rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:border-color .2s}
+.linkedin-item:hover{border-color:var(--teal-border)}
+.linkedin-item strong{display:block;font-size:.82rem;font-weight:600;color:var(--text-h);margin-bottom:.3rem}
+
+/* NEWSLETTER */
+.newsletter-section{background:var(--surface-2);border-top:1px solid var(--border);padding:5rem 3rem}
+.newsletter-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.newsletter-eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem}
+.newsletter-eyebrow .line{width:28px;height:1.5px;background:var(--teal)}
+.newsletter-eyebrow span{font-size:.67rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.newsletter-title{font-family:var(--serif);font-size:1.7rem;color:var(--text-h);margin-bottom:.7rem;line-height:1.2;letter-spacing:-.01em}
+.newsletter-body{font-size:.93rem;color:var(--text-m);line-height:1.8}
+.newsletter-form{display:flex;flex-direction:column;gap:.7rem}
+.newsletter-form input{padding:.78rem 1rem;border:1px solid var(--border);border-radius:8px;font-family:var(--sans);font-size:.88rem;color:var(--text-h);outline:none;background:var(--surface);transition:border-color .2s}
+.newsletter-form input:focus{border-color:var(--teal)}
+.newsletter-form input::placeholder{color:var(--text-m)}
+.newsletter-form button{background:var(--teal);color:#fff;font-family:var(--sans);font-size:.86rem;font-weight:600;padding:.82rem 1.6rem;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+.newsletter-form button:hover{background:var(--teal-mid)}
+.newsletter-note{font-size:.76rem;color:var(--text-m);line-height:1.5}
+
+/* CONTENT WRAP */
+.content-wrap{max-width:1140px;margin:0 auto;padding:5rem 3rem 6rem;display:grid;grid-template-columns:1fr 320px;gap:5rem;align-items:start}
+
+@media(max-width:1024px){.content-wrap{grid-template-columns:1fr}.sidebar{position:static}.newsletter-inner{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.page-hero,.newsletter-section,.cta-section{padding-left:1.5rem;padding-right:1.5rem}.content-wrap{padding:3rem 1.5rem 4rem}.page-hero{padding-top:7rem;padding-bottom:3.5rem}.footer-top{grid-template-columns:1fr}.cta-inner{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo">
+    <a href="cloudcentria_index.html" style="display:flex;align-items:center;color:var(--text-h);">
+      <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:34px;width:auto;">
+        <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="currentColor" letter-spacing="-0.4">Cloudcentria</text>
+        <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#1A6B5A" letter-spacing="4">SECURITY</text>
+      </svg>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="cloudcentria_index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="capabilities.html">Capabilities</a>
+    <a href="about.html">About</a>
+    <a href="work.html">Work</a>
+    <a href="insights.html" class="active">Insights</a>
+    <a href="/cdn-cgi/l/email-protection#17657879797e7257747b78627374727963657e763974787a" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="eyebrow"><div class="line"></div><span>IAM Insights</span></div>
+      <h1>Real talk about <em>identity security.</em></h1>
+      <p>Straight talk on security — what's actually broken, why, and how to fix it. Written from inside the problem, not from a vendor's perspective.</p>
+    </div>
+    <div class="hero-aside">
+      <div class="topic-pills">
+        <span class="topic-pill active">All</span>
+        <span class="topic-pill">Zero Trust</span>
+        <span class="topic-pill">PAM</span>
+        <span class="topic-pill">Identity Hiring</span>
+        <span class="topic-pill">IGA</span>
+        <span class="topic-pill">CIAM</span>
+        <span class="topic-pill">Governance</span>
+        <span class="topic-pill">Federal</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div>
+    <!-- FEATURED -->
+    <div class="featured-post">
+      <span class="featured-label">Featured</span>
+      <div class="post-meta">
+        <span class="post-tag">Identity Hiring</span>
+        <span class="post-date">February 2026</span>
+        <span class="post-read">8 min read</span>
+      </div>
+      <h2><a href="services.html">Why do so many security job postings require 15 certifications for a job that mainly needs judgment?</a></h2>
+      <p class="post-excerpt">The security talent shortage is real — but a lot of it is self-inflicted. Companies require certifications that don't predict whether someone can actually do the job. They filter on specific tool names instead of problem-solving ability. They confuse experience with acronyms for experience with real environments. The result: roles open for six months, qualified people filtered out in round one, and organizations left without the help they need.</p>
+      <a href="services.html" class="read-link">Read the full piece →</a>
+    </div>
+
+    <!-- POST LIST -->
+    <div class="post-list">
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">Zero Trust</span>
+            <span class="post-date">January 2026</span>
+            <span class="post-read">6 min read</span>
+          </div>
+          <h3><a href="#">Your vendor sold you "Zero Trust." That's not the same as actually having it.</a></h3>
+          <p class="post-excerpt">Buying a Zero Trust product and building a Zero Trust security posture are two very different things. Most organizations have the former and assume it means the latter. Meanwhile, the gap between what the vendor dashboard shows and what the environment is actually doing is exactly where attackers find their way through.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_zerotrust.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">PAM</span>
+            <span class="post-date">January 2026</span>
+            <span class="post-read">5 min read</span>
+          </div>
+          <h3><a href="cases/cs_pam.html">You bought the admin access control software. So why is everything still broken?</a></h3>
+          <p class="post-excerpt">The most common answer is that the tool was configured the way the vendor manual says to configure it — not the way your team actually works. When the secure path is slower than the insecure workaround, people use the workaround. Every time. The program fails not because the tool is bad, but because nobody accounted for how the team operates under pressure.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_pam.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">IGA</span>
+            <span class="post-date">December 2025</span>
+            <span class="post-read">7 min read</span>
+          </div>
+          <h3><a href="cases/cs_zerotrust.html">Your Zero Trust program won't work if your employee access data is a mess.</a></h3>
+          <p class="post-excerpt">Zero Trust sounds great until you realize your system thinks a former employee from two years ago is still active — and your current security policies are enforcing access decisions based on that. Clean, accurate identity data isn't optional groundwork for Zero Trust. It's the foundation everything else depends on.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_zerotrust.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">Identity Hiring</span>
+            <span class="post-date">December 2025</span>
+            <span class="post-read">5 min read</span>
+          </div>
+          <h3><a href="cases/cs_pam.html">Your new hire can't log in on day one. Your ex-employee still can. Both are the same problem.</a></h3>
+          <p class="post-excerpt">A chaotic onboarding process and a security risk from a former employee's access both trace back to the same root cause: no clear, automated system for knowing exactly what access each role needs and making sure that access is granted — and removed — at the right times. It looks like an HR problem. It's actually an identity governance problem.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_pam.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">PKI</span>
+            <span class="post-date">November 2025</span>
+            <span class="post-read">4 min read</span>
+          </div>
+          <h3><a href="cases/cs_pki.html">Why does your login system break without warning every time a certificate expires?</a></h3>
+          <p class="post-excerpt">Because nobody owns the renewal process. The certificate expiration date was known for months — it's on a fixed schedule. But ownership is scattered across teams, documentation is out of date, and nobody has a system that catches it before it becomes an outage. The technical fix is simple. The organizational fix is where most teams get stuck.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_pki.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">Governance</span>
+            <span class="post-date">October 2025</span>
+            <span class="post-read">6 min read</span>
+          </div>
+          <h3><a href="cases/cs_observability.html">You don't need to fix everything at once. Here's how to prioritize what actually reduces risk first.</a></h3>
+          <p class="post-excerpt">Most organizations have a long list of security gaps and a limited budget. The programs that succeed sequence work to get visible, measurable wins early — reducing real risk and building internal confidence — while the longer-term foundation is being built. The programs that fail try to do everything at once and stall out without showing anything for it.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_observability.html" class="post-arrow">→</a></div>
+      </div>
+
+      <div class="post-item">
+        <div class="post-item-left">
+          <div class="post-meta">
+            <span class="post-tag">Federal</span>
+            <span class="post-date">September 2025</span>
+            <span class="post-read">8 min read</span>
+          </div>
+          <h3><a href="cases/cs_ciam.html">The FedRAMP auditors are coming. Is your evidence ready — or will you spend a month pulling it together?</a></h3>
+          <p class="post-excerpt">Organizations that treat compliance monitoring as something to prepare for — rather than something that runs continuously — always face the same problem: the auditors arrive and the evidence needs to be assembled from scratch. The organizations that sail through assessments have systems that generate that evidence automatically as part of normal operations. One is a fire drill. The other is just operations.</p>
+        </div>
+        <div class="post-item-right"><a href="cases/cs_ciam.html" class="post-arrow">→</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <span class="sidebar-label">About the Author</span>
+      <p>Ronnie Bailey has spent 15+ years solving identity security problems at Fortune 500 companies and federal agencies. He writes about what actually happens in real environments — not what vendor documentation says should happen.</p>
+      <a href="about.html" class="btn-teal">Read the full background →</a>
+    </div>
+
+    <div class="sidebar-card">
+      <span class="sidebar-label">Topics</span>
+      <div class="topic-list">
+        <div class="topic-item"><span>Zero Trust Architecture</span><span class="topic-count">4</span></div>
+        <div class="topic-item"><span>Privileged Access Management</span><span class="topic-count">6</span></div>
+        <div class="topic-item"><span>Identity Hiring Practices</span><span class="topic-count">3</span></div>
+        <div class="topic-item"><span>Identity Governance</span><span class="topic-count">5</span></div>
+        <div class="topic-item"><span>CIAM & Federation</span><span class="topic-count">3</span></div>
+        <div class="topic-item"><span>Federal / FedRAMP</span><span class="topic-count">4</span></div>
+        <div class="topic-item"><span>PKI & Certificates</span><span class="topic-count">2</span></div>
+        <div class="topic-item"><span>Security Observability</span><span class="topic-count">3</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <span class="sidebar-label">From LinkedIn</span>
+      <div class="linkedin-posts">
+        <a href="https://linkedin.com/in/ronniejbailey" class="linkedin-item" target="_blank" rel="noopener">
+          <strong>On IAM Lifecycle & Zero Trust</strong>
+          With so many organizations implementing Zero Trust, mapping out IAM with the future in mind isn't optional — it's the foundation everything else is built on.
+        </a>
+        <a href="https://linkedin.com/in/ronniejbailey" class="linkedin-item" target="_blank" rel="noopener">
+          <strong>On Hiring & the Talent Gap</strong>
+          The tech recruitment process is broken for IAM roles. Clearly defined, skills-based job requirements benefit everyone — including the organizations writing the job descriptions.
+        </a>
+        <a href="https://linkedin.com/in/ronniejbailey" class="linkedin-item" target="_blank" rel="noopener">
+          <strong>On Onboarding & Access</strong>
+          The organization SHOULD know the access and tools needed for any employee ahead of hiring. When they don't, the access problem starts before day one.
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div>
+      <div class="newsletter-eyebrow"><div class="line"></div><span>IAM Insights Newsletter</span></div>
+      <h2 class="newsletter-title">Real security insights in your inbox. No vendor fluff.</h2>
+      <p class="newsletter-body">When a new piece goes up — on practical security fixes, identity governance, what's actually broken in the market, or how to talk to your leadership about access risk — it comes here first. No ads, no sponsored content, no vendor talking points.</p>
+    </div>
+    <div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="text" placeholder="Your name">
+        <input type="email" placeholder="Your email address">
+        <button type="submit">Subscribe to IAM Insights</button>
+        <p class="newsletter-note">No spam. Unsubscribe any time. Sent when there's something worth reading.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">Something resonating? Your situation might be simpler to fix than you think.</h2>
+      <p class="cta-body">A lot of security problems that look complicated have a clear path through them once you've seen similar situations before. If something you read here sounds familiar, let's talk about it.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/cdn-cgi/l/email-protection#6b19040505020e2b0807041e0f080e051f19020a45080406" class="btn-white">Get in Touch</a>
+      <a href="services.html" class="btn-outline-white">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">
+        <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:32px;width:auto;">
+          <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="white" letter-spacing="-0.4">Cloudcentria</text>
+          <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#2A8A72" letter-spacing="4">SECURITY</text>
+        </svg>
+      </div><p>Principal Identity Security Consulting. Serving Fortune 500 enterprises and federal agencies with Zero Trust architecture, PAM implementation, and identity governance.</p></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Privileged Access Management</a></li><li><a href="services.html">Zero Trust Architecture</a></li><li><a href="services.html">CIAM & Federation</a></li><li><a href="services.html">Identity Governance</a></li><li><a href="services.html">Security Observability</a></li></ul></div>
+      <div class="footer-col"><h4>Work</h4><ul><li><a href="cases/cs_pam.html">PAM Case Study</a></li><li><a href="cases/cs_ciam.html">CIAM Case Study</a></li><li><a href="cases/cs_zerotrust.html">Zero Trust Case Study</a></li><li><a href="cases/cs_observability.html">Observability Case Study</a></li><li><a href="cases/cs_pki.html">PKI Case Study</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="/cdn-cgi/l/email-protection#b1c3dedfdfd8d4f1d2dddec4d5d2d4dfc5c3d8d09fd2dedc"><span class="__cf_email__" data-cfemail="b5c7dadbdbdcd0f5d6d9dac0d1d6d0dbc1c7dcd49bd6dad8">[email&#160;protected]</span></a></li><li><a href="https://linkedin.com/in/ronniejbailey" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="work.html">Work</a>
+    <a href="insights.html">IAM Insights</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Cloudcentria Security. All rights reserved.</p><p><a href="#">Privacy Policy</a></p></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled

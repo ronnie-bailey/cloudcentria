@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Cloudcentria Security</title>
+<meta name="description" content="Identity security services built around your environment, not a vendor's sales sheet. PAM, Zero Trust, CIAM, IGA, and security observability consulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:        #1A6B5A;
+  --teal-mid:    #22836E;
+  --teal-light:  #EAF4F0;
+  --teal-border: #C2DDD6;
+  --ink:         #0C1A17;
+  --ink-2:       #112019;
+  --text-h:      #111F1B;
+  --text-b:      #3E524D;
+  --text-m:      #7A8D87;
+  --surface:     #FFFFFF;
+  --surface-2:   #F5F8F7;
+  --border:      #E3EDEA;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--surface);color:var(--text-b);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(12,26,23,.07)}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-mark,.nav-logo-text{display:none}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-size:.83rem;font-weight:500;color:var(--text-m);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.nav-cta{display:inline-flex;align-items:center;background:var(--teal);color:#fff!important;font-size:.8rem;font-weight:600;padding:.55rem 1.4rem;border-radius:100px;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--teal-mid);transform:translateY(-1px)}
+
+.page-hero{padding:9rem 3rem 5rem;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1140px;margin:0 auto}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.08;letter-spacing:-.02em;color:var(--text-h);max-width:700px;margin-bottom:1.2rem}
+.page-hero h1 em{font-style:italic;color:var(--teal)}
+.page-hero p{font-size:1rem;font-weight:400;color:var(--text-m);max-width:600px;line-height:1.82}
+
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
+.eyebrow .line{width:28px;height:1.5px;background:var(--teal);flex-shrink:0;display:block}
+.eyebrow span{font-size:.67rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+
+.section{padding:6.5rem 3rem}
+.section-inner{max-width:1140px;margin:0 auto}
+h2.section-title,h2.engagement-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.12;letter-spacing:-.015em;color:var(--text-h);max-width:640px;margin-bottom:.9rem}
+h2.section-title em,h2.engagement-title em{font-style:italic;color:var(--teal)}
+.section-lead,.engagement-sub{font-size:.95rem;color:var(--text-m);max-width:560px;line-height:1.82;margin-bottom:3.5rem}
+
+.cta-section{background:var(--ink-2);padding:6rem 3rem}
+.cta-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.cta-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:.8rem;letter-spacing:-.01em}
+.cta-body{font-size:.93rem;color:rgba(255,255,255,.42);max-width:440px;line-height:1.78}
+.cta-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;background:#fff;color:var(--teal);font-size:.88rem;font-weight:600;padding:.85rem 2rem;border-radius:100px;transition:opacity .2s,transform .15s}
+.btn-white:hover{opacity:.92;transform:translateY(-1px)}
+.btn-outline-white{display:inline-flex;align-items:center;color:rgba(255,255,255,.5);font-size:.88rem;font-weight:500;border:1.5px solid rgba(255,255,255,.18);padding:.83rem 2rem;border-radius:100px;transition:border-color .2s,color .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal);color:#fff;font-size:.85rem;font-weight:600;padding:.78rem 1.8rem;border-radius:100px;transition:background .2s,transform .15s}
+.btn-teal:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;color:var(--teal);border:1.5px solid var(--teal-border);font-size:.85rem;font-weight:600;padding:.76rem 1.8rem;border-radius:100px;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--teal)}
+
+footer{background:var(--ink);padding:5rem 3rem 2.5rem}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:2rem}
+.footer-brand p{font-size:.82rem;color:rgba(255,255,255,.28);line-height:1.7;max-width:260px;margin-top:1rem}
+.footer-logo{margin-bottom:.3rem}
+.footer-col h4{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-col ul li a{font-size:.84rem;color:rgba(255,255,255,.36);transition:color .2s}
+.footer-col ul li a:hover{color:rgba(255,255,255,.72)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.18)}
+.footer-bottom a{color:rgba(255,255,255,.26)}
+
+.service-block{display:grid;grid-template-columns:260px 1fr;gap:4rem;align-items:start;padding:4rem 0;border-bottom:1px solid var(--border)}
+.service-block:last-child{border-bottom:none}
+.service-num{font-family:var(--serif);font-size:.82rem;color:var(--teal);opacity:.55;display:block;margin-bottom:.8rem}
+.service-name{font-family:var(--serif);font-size:1.5rem;color:var(--text-h);line-height:1.2;margin-bottom:1.2rem}
+.service-tag-list{display:flex;flex-wrap:wrap;gap:.4rem}
+.service-tag{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);border:1px solid var(--teal-border);padding:.2rem .65rem;border-radius:100px}
+.service-callout{font-size:.95rem;color:var(--text-b);line-height:1.78;padding:1.2rem 1.4rem;background:var(--teal-light);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;margin-bottom:1.2rem}
+.service-callout strong{font-weight:600;color:var(--text-h)}
+.service-desc{font-size:.93rem;color:var(--text-b);line-height:1.82;margin-bottom:1.2rem}
+.service-bullets{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.6rem}
+.service-bullet{display:flex;gap:.8rem;font-size:.88rem;color:var(--text-b);align-items:flex-start}
+.service-bullet::before{content:'';display:block;width:5px;height:5px;background:var(--teal);border-radius:50%;flex-shrink:0;margin-top:.55rem}
+.service-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:600;color:var(--teal);border-bottom:1px solid var(--teal-border);padding-bottom:.15rem;transition:border-color .2s}
+.service-link:hover{border-color:var(--teal)}
+
+.philosophy{background:var(--teal-light);border-top:1px solid var(--teal-border);border-bottom:1px solid var(--teal-border)}
+.philosophy-inner{max-width:1140px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.philosophy-quote{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--text-h);line-height:1.45}
+.philosophy-quote span,.philosophy-quote em{color:var(--teal)}
+.philosophy-right p{font-size:.93rem;color:var(--text-b);line-height:1.82}
+
+.engagement{background:var(--surface-2);border-top:1px solid var(--border)}
+.engagement .eyebrow span,.engagement .eyebrow .line{color:var(--teal) !important;background:var(--teal) !important}
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.model-card{background:var(--surface);padding:2rem 1.8rem;transition:background .2s}
+.model-card:hover{background:var(--teal-light)}
+.model-step{font-family:var(--serif);font-size:.78rem;color:var(--teal);opacity:.65;display:block;margin-bottom:.7rem}
+.model-name{font-size:.95rem;font-weight:600;color:var(--text-h);margin-bottom:.6rem}
+.model-desc{font-size:.85rem;color:var(--text-b);line-height:1.72}
+
+.invest-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.invest-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem 1.8rem}
+.invest-card-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+.invest-card-title{font-family:var(--serif);font-size:1.05rem;color:var(--text-h);margin-bottom:.3rem}
+.invest-card-meta{font-size:.8rem;color:var(--text-m)}
+
+@media(max-width:1024px){.service-block{grid-template-columns:1fr;gap:2rem}.model-grid{grid-template-columns:1fr 1fr}.philosophy-inner{grid-template-columns:1fr;gap:2rem}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}.invest-grid{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.page-hero,.section,.cta-section,.philosophy{padding-left:1.5rem;padding-right:1.5rem}.page-hero{padding-top:7rem;padding-bottom:3.5rem}.model-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.cta-inner{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo">
+    <a href="cloudcentria_index.html" style="display:flex;align-items:center;color:var(--text-h);">
+      <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:34px;width:auto;">
+        <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="currentColor" letter-spacing="-0.4">Cloudcentria</text>
+        <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#1A6B5A" letter-spacing="4">SECURITY</text>
+      </svg>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="cloudcentria_index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="capabilities.html">Capabilities</a>
+    <a href="about.html">About</a>
+    <a href="work.html">Work</a>
+    <a href="insights.html">Insights</a>
+    <a href="/cdn-cgi/l/email-protection#02706d6c6c6b6742616e6d776661676c76706b632c616d6f" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><div class="line"></div><span>Services</span></div>
+    <h1>What we actually <em>help you with.</em></h1>
+    <p class="page-hero-lead" style="font-size:1rem;color:var(--text-m);max-width:600px;line-height:1.82;">Security jargon is everywhere. Plain answers are harder to find. Below, each service starts with the real-world problem it solves — in language that doesn't require a cybersecurity degree to understand. The technical detail is there for teams who need it, but it's not the first thing you'll read.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="section-inner">
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">01</span>
+        <div class="service-name">Controlling Who Has Admin Access</div>
+        <div class="service-tag-list">
+          <span class="service-tag">PAM</span>
+          <span class="service-tag">JIT</span>
+          <span class="service-tag">Session Governance</span>
+          <span class="service-tag">Vault</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> Some accounts in your organization have the ability to access everything — delete data, change settings, view sensitive records. If those accounts are always active, anyone who steals those credentials has the keys to everything. We build systems where that level of access is temporary, requires approval, and leaves a full record of what was done.</p>
+        <p class="service-desc">Most PAM failures aren't tool failures — they're design failures. A privileged access program built around how a vendor's documentation says an organization should operate will be bypassed the moment there's pressure. The architecture has to fit the actual environment, including how engineers escalate during incidents, how service accounts accumulate over time, and where standing credentials hide in containerized workloads.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Environment assessment and full privileged account inventory before a single configuration change</div>
+          <div class="service-bullet">Just-in-Time elevation workflows integrated with existing change management (ServiceNow, Jira)</div>
+          <div class="service-bullet">Session recording, session governance, and behavioral analytics for privileged operations</div>
+          <div class="service-bullet">Service account lifecycle governance and credential vault integration</div>
+          <div class="service-bullet">Workload identity federation for containerized and cloud-native environments</div>
+          <div class="service-bullet">MITRE ATT&CK mapped validation — controls tested against real adversary techniques, not compliance checklists</div>
+        </div>
+        <a href="cases/cs_pam.html" class="service-link">See a real example of this work →</a>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">02</span>
+        <div class="service-name">Zero Trust — Verify Everyone, Every Time</div>
+        <div class="service-tag-list">
+          <span class="service-tag">NIST 800-207</span>
+          <span class="service-tag">Conditional Access</span>
+          <span class="service-tag">PIM</span>
+          <span class="service-tag">Multi-Cloud</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> Traditional security assumes that if you're already inside the company network, you can be trusted. That assumption is why breaches spread so far once an attacker gets in. Zero Trust means every login and every access request gets verified — no matter where it comes from. We build that verification layer so threats can't move freely even when they're already inside.</p>
+        <p class="service-desc">Zero Trust is a posture, not a product. Buying a next-generation firewall or a CASB and calling it Zero Trust leaves the underlying perimeter model intact — the gap between stated posture and enforced reality is where breach opportunity lives.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">NIST 800-207 aligned framework design across hybrid multi-cloud environments (Azure, AWS, GCP)</div>
+          <div class="service-bullet">Conditional access policies built on behavioral signals — impossible travel, MFA fatigue, token anomalies</div>
+          <div class="service-bullet">PIM restructuring to replace standing admin assignments with time-bound, scoped activations</div>
+          <div class="service-bullet">Directory schema normalization to eliminate the identity data quality issues that produce incorrect access decisions</div>
+          <div class="service-bullet">SIEM-integrated automated enforcement so policy response doesn't depend on analyst availability</div>
+        </div>
+        <a href="cases/cs_zerotrust.html" class="service-link">See a real example of this work →</a>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">03</span>
+        <div class="service-name">Secure Logins for Your Customers & Partners</div>
+        <div class="service-tag-list">
+          <span class="service-tag">CIAM</span>
+          <span class="service-tag">OAuth2</span>
+          <span class="service-tag">OIDC</span>
+          <span class="service-tag">FedRAMP</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> If your customers, patients, clients, or partners log into a system you run, that login process needs to be secure, smooth, and meet whatever regulatory standards apply to your industry. A broken or insecure login isn't just a technical problem — it's a trust problem with the people your business depends on.</p>
+        <p class="service-desc">External-facing identity is a different problem than workforce identity. In regulated environments, authentication failures aren't user experience problems — they're audit findings.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">CIAM platform design using Auth0, Okta, Microsoft Entra External ID, or ForgeRock based on environment requirements</div>
+          <div class="service-bullet">Federation standardization across OAuth2, OIDC, SAML 2.0, and WS-Federation</div>
+          <div class="service-bullet">Automated certificate lifecycle — rotation, monitoring, and metadata refresh built in from day one</div>
+          <div class="service-bullet">Identity assurance level design aligned to NIST 800-63 for regulated and federal contexts</div>
+          <div class="service-bullet">FedRAMP and NIST 800-53 control implementation with continuous evidence generation</div>
+        </div>
+        <a href="cases/cs_ciam.html" class="service-link">See a real example of this work →</a>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">04</span>
+        <div class="service-name">Managing Access as Your Team Changes</div>
+        <div class="service-tag-list">
+          <span class="service-tag">IGA</span>
+          <span class="service-tag">Lifecycle</span>
+          <span class="service-tag">Access Cert</span>
+          <span class="service-tag">SOD</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> When employees join, change roles, or leave — their access should update automatically. In practice it often doesn't. Former employees retain access for months. People accumulate permissions from every role they've ever had. Nobody has a clean picture of who can actually access what. We build the automated systems that keep access current and auditable.</p>
+        <p class="service-desc">Privilege accumulates through ordinary operations — every onboarding shortcut, every missed offboarding, every role change that left access behind. The goal is governance that eliminates the problem at the source.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Joiner/mover/leaver workflow design across HR, Active Directory, and downstream application provisioning</div>
+          <div class="service-bullet">Role engineering and RBAC model design that reflects how the organization actually grants access</div>
+          <div class="service-bullet">Access certification automation with behavioral analytics to identify dormant access and SOD violations</div>
+          <div class="service-bullet">SailPoint, Saviynt, and ActiveIDM implementation and governance framework design</div>
+          <div class="service-bullet">Continuous audit evidence generation aligned to SOX, HIPAA, and NIST 800-53 requirements</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">05</span>
+        <div class="service-name">Preventing Authentication Outages</div>
+        <div class="service-tag-list">
+          <span class="service-tag">PKI</span>
+          <span class="service-tag">SAML</span>
+          <span class="service-tag">Federation</span>
+          <span class="service-tag">Automation</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> Your login systems run on digital certificates that expire. When they expire and nobody notices in time, login breaks — for everyone, all at once. We automate the entire renewal process so this becomes a routine calendar event instead of a 2am emergency.</p>
+        <p class="service-desc">In a federated environment, a single expired signing certificate breaks authentication for every application in the trust chain simultaneously — every user, every region, all at once.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Full certificate and federation trust chain inventory — documenting what exists before automating what should</div>
+          <div class="service-bullet">Tiered expiration monitoring with renewal automation across Entra ID, ADFS, and on-premises PKI</div>
+          <div class="service-bullet">SAML metadata refresh automation and OIDC well-known endpoint continuous validation</div>
+          <div class="service-bullet">Key rollover coordination across relying parties with advance notice rather than immediate cutover</div>
+          <div class="service-bullet">NIST 800-53 SC-17 and IA-5 aligned documentation for federal audit requirements</div>
+        </div>
+        <a href="cases/cs_pki.html" class="service-link">See a real example of this work →</a>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <span class="service-num">06</span>
+        <div class="service-name">Seeing What's Actually Happening in Your Environment</div>
+        <div class="service-tag-list">
+          <span class="service-tag">Splunk</span>
+          <span class="service-tag">Terraform</span>
+          <span class="service-tag">CSPM</span>
+          <span class="service-tag">FISMA</span>
+        </div>
+      </div>
+      <div class="service-right">
+        <p class="service-callout"><strong>The real-world problem:</strong> Most security tools generate so much data that real threats get buried in noise, and your security team spends their time chasing false alarms instead of real ones. We configure your monitoring systems to show you what actually matters — in a format both your technical team and your leadership can read.</p>
+        <p class="service-desc">Security tools generate noise by default. The goal is an environment that reports its own truth in real time.</p>
+        <div class="service-bullets">
+          <div class="service-bullet">Splunk and Azure Sentinel tuning based on environment-specific behavioral baselines, not vendor defaults</div>
+          <div class="service-bullet">Dashboard design for dual audiences — executive risk posture and analyst operational triage from the same telemetry</div>
+          <div class="service-bullet">Terraform and CloudFormation governance baked into CI/CD pipelines to catch misconfiguration before deployment</div>
+          <div class="service-bullet">CSPM implementation for continuous multi-cloud compliance monitoring across AWS, Azure, and GCP</div>
+          <div class="service-bullet">FISMA continuous monitoring architecture with built-in evidence generation for federal assessments</div>
+        </div>
+        <a href="cases/cs_observability.html" class="service-link">See a real example of this work →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PHILOSOPHY STRIP -->
+<div class="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-quote">"Your security program should be built around how your organization actually works — not around how a vendor's template assumes you work. We build it to fit your reality."</div>
+    <div class="philosophy-right">
+      <p>Every organization runs differently. Your industry, your team size, your mix of cloud and on-premises systems, your compliance requirements — these all shape what the right security approach actually looks like. We start by understanding your situation on its own terms, then build a plan that fits it. Not a plan we'd build for any other client.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ENGAGEMENT MODEL -->
+<section class="section engagement">
+  <div class="section-inner">
+    <div class="eyebrow"><div class="line"></div><span>Engagement Model</span></div>
+    <h2 class="engagement-title">How an engagement works — from first conversation to long-term partnership.</h2>
+    <p class="engagement-sub">Security isn't a one-time fix. Your organization changes, new threats emerge, regulations evolve. Here's how we structure engagements to deliver quick, meaningful results while building toward something that lasts.</p>
+    <div class="model-grid">
+      <div class="model-card">
+        <span class="model-step">Phase 01</span>
+        <div class="model-name">Step 1: We learn your situation</div>
+        <p class="model-desc">We start by understanding what you actually have — not what policy says you have. Who has access to what, where the gaps are, and what's already working well. No recommendations before we understand the environment.</p>
+      </div>
+      <div class="model-card">
+        <span class="model-step">Phase 02</span>
+        <div class="model-name">Step 2: We build a plan with quick wins</div>
+        <p class="model-desc">We define what to fix first — the changes that reduce risk immediately and build confidence — alongside a longer-term roadmap that moves toward lasting security rather than just passing the next audit.</p>
+      </div>
+      <div class="model-card">
+        <span class="model-step">Phase 03</span>
+        <div class="model-name">Step 3: We build it and prove it works</div>
+        <p class="model-desc">We implement the controls and test them against real attack scenarios — not just check compliance boxes. You get documented proof that your security does what it's designed to do.</p>
+      </div>
+      <div class="model-card">
+        <span class="model-step">Phase 04</span>
+        <div class="model-name">Step 4: Audit-ready documentation</div>
+        <p class="model-desc">If you're in a regulated industry, we make sure the documentation and evidence are generated automatically as part of normal operations — so when an audit comes, you're pulling reports, not scrambling to recreate records.</p>
+      </div>
+      <div class="model-card">
+        <span class="model-step">Phase 05</span>
+        <div class="model-name">Step 5: Ongoing partnership</div>
+        <p class="model-desc">Your organization keeps changing. New tools, new people, new threats, new regulations. Ongoing advisory means you have someone to call when something changes — before it becomes a problem, not after.</p>
+      </div>
+      <div class="model-card">
+        <span class="model-step">On Demand</span>
+        <div class="model-name">Need an expert on your team?</div>
+        <p class="model-desc">Some organizations need senior identity security expertise without the cost and commitment of a full-time hire. We can serve as your embedded identity security expert — attending meetings, responding to incidents, and guiding decisions as a trusted extension of your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT SIGNAL -->
+<section class="section" style="background:var(--surface-2);border-top:1px solid var(--border);">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;">
+      <div style="width:24px;height:2px;background:var(--teal);"></div>
+      <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);">Investment</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+      <div>
+        <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.4rem);color:var(--text-h);line-height:1.15;margin-bottom:1rem;">Engagements are scoped to your situation. Not priced off a menu.</h2>
+        <p style="font-size:0.97rem;font-weight:300;color:var(--text-b);line-height:1.82;margin-bottom:1rem;">Every engagement starts with a discovery conversation — understanding your environment, your goals, and the scope of what needs to be addressed. Pricing is determined from there, not before it.</p>
+        <p style="font-size:0.97rem;font-weight:300;color:var(--gray);line-height:1.8;">Cloudcentria works with organizations that are serious about getting identity security right. If budget is the primary driver rather than outcome, we're probably not the right fit — and we'll tell you that directly in the first conversation.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="background:var(--white);border:1px solid var(--teal-border);border-radius:12px;padding:1.6rem 1.8rem;">
+          <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem;">Assessment & Advisory</div>
+          <div style="font-family:var(--serif);font-size:1.1rem;color:var(--text-h);margin-bottom:0.4rem;">Environment review, gap analysis, and strategic roadmap</div>
+          <div style="font-size:0.82rem;color:var(--text-m);">Typically delivered as a fixed-scope engagement</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--teal-border);border-radius:12px;padding:1.6rem 1.8rem;">
+          <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem;">Implementation</div>
+          <div style="font-family:var(--serif);font-size:1.1rem;color:var(--text-h);margin-bottom:0.4rem;">PAM, Zero Trust, CIAM, IGA, or PKI buildout</div>
+          <div style="font-size:0.82rem;color:var(--text-m);">Project-based or phased milestone delivery</div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--teal-border);border-radius:12px;padding:1.6rem 1.8rem;">
+          <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem;">Ongoing Advisory / Staff Augmentation</div>
+          <div style="font-family:var(--serif);font-size:1.1rem;color:var(--text-h);margin-bottom:0.4rem;">Principal-level expertise embedded in your team</div>
+          <div style="font-size:0.82rem;color:var(--text-m);">Monthly retainer — minimum 3-month commitment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">Not sure where to start? That's fine — most clients aren't.</h2>
+      <p class="cta-body">The first consultation is a real conversation. Tell us what's going on in your organization — we'll tell you honestly whether and how we can help.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/cdn-cgi/l/email-protection#e3918c8d8d8a86a3808f8c968780868d97918a82cd808c8e" class="btn-white">Schedule a Consultation</a>
+      <a href="about.html" class="btn-outline-white">About Cloudcentria</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+        <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:32px;width:auto;">
+          <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="white" letter-spacing="-0.4">Cloudcentria</text>
+          <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#2A8A72" letter-spacing="4">SECURITY</text>
+        </svg>
+      </div>
+        <p>Principal Identity Security Consulting. Serving Fortune 500 enterprises and federal agencies with Zero Trust architecture, PAM implementation, and identity governance.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="#">Privileged Access Management</a></li>
+        <li><a href="#">Zero Trust Architecture</a></li>
+        <li><a href="#">CIAM & Federation</a></li>
+        <li><a href="#">Identity Governance</a></li>
+        <li><a href="#">Security Observability</a></li>
+        <li><a href="#">PKI & Certificate Lifecycle</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Work</h4><ul>
+        <li><a href="cases/cs_pam.html">PAM Case Study</a></li>
+        <li><a href="cases/cs_ciam.html">CIAM Case Study</a></li>
+        <li><a href="cases/cs_zerotrust.html">Zero Trust Case Study</a></li>
+        <li><a href="cases/cs_observability.html">Observability Case Study</a></li>
+        <li><a href="cases/cs_pki.html">PKI Case Study</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="/cdn-cgi/l/email-protection#99ebf6f7f7f0fcd9faf5f6ecfdfafcf7edebf0f8b7faf6f4"><span class="__cf_email__" data-cfemail="2b59444545424e6b4847445e4f484e455f59424a05484446">[email&#160;protected]</span></a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="work.html">Work</a>
+    <a href="insights.html">IAM Insights Blog</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Cloudcentria Security. All rights reserved.</p>
+      <p><a 
