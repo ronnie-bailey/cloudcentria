@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capabilities — Cloudcentria Security</title>
+<meta name="description" content="Technical capabilities across identity platforms, cloud environments, compliance frameworks, and security tooling. Platform agnostic. Outcome focused.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1A6B5A;--teal-mid:#2A8A72;--teal-light:#E8F5F1;--teal-border:#B8DDD4;--dark:#0F1C19;--dark-2:#162018;--mid:#2C3E38;--gray:#5A6B65;--gray-lt:#8A9B95;--light:#F4F7F6;--white:#FFFFFF;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);line-height:1.7;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--teal-border);transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(26,107,90,0.08);}
+.nav-logo{display:flex;align-items:center;gap:0.7rem;}
+.nav-logo-mark{width:34px;height:34px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-mark svg{width:18px;height:18px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.nav-logo-text{font-family:var(--serif);font-size:1.1rem;color:var(--dark);}
+.nav-logo-text span{color:var(--teal);}
+.nav-links{display:flex;align-items:center;gap:2.2rem;}
+.nav-links a{font-size:0.85rem;font-weight:500;color:var(--gray);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--teal);}
+.nav-cta{display:inline-flex;align-items:center;background:var(--teal);color:var(--white)!important;font-size:0.83rem;font-weight:600;padding:0.55rem 1.3rem;border-radius:100px;}
+.nav-cta:hover{background:var(--teal-mid);}
+
+.page-hero{padding:9rem 3rem 5rem;background:var(--dark);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,90,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,90,0.06) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;}
+.page-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:2;}
+.eyebrow{display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;}
+.eyebrow .line{width:24px;height:2px;background:var(--teal-mid);}
+.eyebrow span{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-mid);}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.1;color:var(--white);max-width:700px;margin-bottom:1.2rem;}
+.page-hero h1 em{font-style:italic;color:var(--teal-mid);}
+.page-hero p{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.78);max-width:580px;line-height:1.8;}
+
+.section{padding:6rem 3rem;}
+.section-inner{max-width:1140px;margin:0 auto;}
+.section-eyebrow{display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;}
+.section-eyebrow .line{width:24px;height:2px;background:var(--teal);}
+.section-eyebrow span{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--dark);max-width:620px;margin-bottom:0.8rem;line-height:1.15;}
+.section-sub{font-size:0.97rem;font-weight:300;color:var(--gray);max-width:560px;line-height:1.8;margin-bottom:3rem;}
+
+/* CAPABILITY CATEGORY */
+.cap-category{margin-bottom:4rem;}
+.cap-category:last-child{margin-bottom:0;}
+.cap-cat-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--teal-border);}
+.cap-cat-name{font-family:var(--serif);font-size:1.3rem;color:var(--dark);}
+.cap-cat-count{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-lt);}
+.cap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;}
+.cap-pill{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;background:var(--light);border:1px solid var(--teal-border);border-radius:8px;font-size:0.85rem;font-weight:500;color:var(--mid);transition:all 0.15s;cursor:default;}
+.cap-pill:hover{background:var(--teal-light);border-color:var(--teal);color:var(--teal);}
+.cap-pill::before{content:'';width:6px;height:6px;background:var(--teal-border);border-radius:50%;flex-shrink:0;transition:background 0.15s;}
+.cap-pill:hover::before{background:var(--teal);}
+
+/* COMPLIANCE GRID */
+.compliance-section{background:var(--light);}
+.compliance-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+.compliance-card{background:var(--white);border:1px solid var(--teal-border);border-radius:12px;padding:1.5rem 1.5rem;}
+.compliance-name{font-size:0.95rem;font-weight:600;color:var(--dark);margin-bottom:0.4rem;}
+.compliance-desc{font-size:0.83rem;font-weight:300;color:var(--gray);line-height:1.6;}
+.compliance-tag{display:inline-block;margin-top:0.8rem;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);border:1px solid var(--teal-border);padding:0.2rem 0.6rem;border-radius:100px;}
+
+/* EXPERIENCE MATRIX */
+.matrix-section{background:var(--dark);}
+.matrix-section .section-title{color:var(--white);}
+.matrix-section .section-sub{color:rgba(255,255,255,0.72);}
+.matrix-section .section-eyebrow span{color:var(--teal-mid);}
+.matrix-section .section-eyebrow .line{background:var(--teal-mid);}
+.matrix-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:16px;overflow:hidden;}
+.matrix-cell{background:var(--dark);padding:1.8rem 1.5rem;transition:background 0.2s;}
+.matrix-cell:hover{background:#1a2e28;}
+.matrix-cell-label{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:0.6rem;}
+.matrix-cell-value{font-family:var(--serif);font-size:1.6rem;color:var(--white);display:block;margin-bottom:0.3rem;}
+.matrix-cell-desc{font-size:0.8rem;font-weight:300;color:rgba(255,255,255,0.68);}
+
+/* CTA */
+.cta-section{background:var(--teal);padding:5rem 3rem;}
+.cta-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;}
+.cta-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--white);line-height:1.15;margin-bottom:0.8rem;}
+.cta-body{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.7);max-width:460px;}
+.cta-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-white{display:inline-flex;align-items:center;gap:0.5rem;background:var(--white);color:var(--teal);font-size:0.9rem;font-weight:600;padding:0.85rem 2rem;border-radius:100px;}
+.btn-white:hover{opacity:0.92;}
+.btn-outline-white{display:inline-flex;align-items:center;color:rgba(255,255,255,0.8);font-size:0.9rem;font-weight:500;border:1px solid rgba(255,255,255,0.35);padding:0.85rem 2rem;border-radius:100px;}
+.btn-outline-white:hover{border-color:rgba(255,255,255,0.8);color:var(--white);}
+
+footer{background:var(--dark-2,#162018);padding:4rem 3rem 2.5rem;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1140px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:2rem;}
+.footer-brand .footer-logo{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:0.8rem;}
+.footer-brand .footer-logo span{color:var(--teal-mid);}
+.footer-brand p{font-size:0.83rem;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.7;max-width:260px;}
+.footer-col h4{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.2rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.footer-col ul li a{font-size:0.85rem;color:rgba(255,255,255,0.5);transition:color 0.2s;}
+.footer-col ul li a:hover{color:rgba(255,255,255,0.85);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{font-size:0.78rem;color:rgba(255,255,255,0.25);}
+
+@media(max-width:1024px){.matrix-grid{grid-template-columns:repeat(2,1fr);}.footer-top{grid-template-columns:1fr 1fr;gap:2rem;}}
+@media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.page-hero,.section,.cta-section{padding-left:1.5rem;padding-right:1.5rem;}.matrix-grid{grid-template-columns:1fr 1fr;}.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <span class="nav-logo-text">Cloudcentria <span>Security</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="cloudcentria_index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="capabilities.html" class="active">Capabilities</a>
+    <a href="about.html">About</a>
+    <a href="insights.html">Insights</a>
+    <a href="mailto:ronnie@cloudcentria.com" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><div class="line"></div><span>Capabilities</span></div>
+    <h1>The tools we use. <em>And why it doesn't start there.</em></h1>
+    <p>The tools listed here matter — but they're not where we start. We start with your situation. The tool gets chosen after we understand what you're dealing with, not before. That said, if you're evaluating vendors or want to know what we can actually operate in your environment, everything below has been used in production — not just listed on a certifications page.</p>
+  </div>
+</div>
+
+<!-- CAPABILITIES BY CATEGORY -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><span>Platform Coverage</span></div>
+    <h2 class="section-title">Tools we've used in production environments — not just listed on a resume.</h2>
+    <p class="section-sub">Every platform below has been implemented, configured, integrated, or managed in a real enterprise or federal environment. If you're using one of these and something's not working right, we've probably seen that problem before.</p>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Login & Access Management Platforms</span>
+        <span class="cap-cat-count">For managing employee & internal user access</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">Microsoft Entra ID</div>
+        <div class="cap-pill">Azure Active Directory</div>
+        <div class="cap-pill">Active Directory (on-prem)</div>
+        <div class="cap-pill">Okta Workforce Identity</div>
+        <div class="cap-pill">PingFederate</div>
+        <div class="cap-pill">Ping Identity</div>
+        <div class="cap-pill">ForgeRock Identity Platform</div>
+        <div class="cap-pill">SailPoint IdentityIQ</div>
+        <div class="cap-pill">Saviynt</div>
+        <div class="cap-pill">ActiveIDM</div>
+        <div class="cap-pill">ADFS</div>
+        <div class="cap-pill">LDAP / Kerberos</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Customer &amp; External User Login Platforms</span>
+        <span class="cap-cat-count">For customer, partner, and external user portals</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">Auth0</div>
+        <div class="cap-pill">Okta Customer Identity</div>
+        <div class="cap-pill">Microsoft Entra External ID</div>
+        <div class="cap-pill">Azure AD B2C</div>
+        <div class="cap-pill">ForgeRock Identity Cloud</div>
+        <div class="cap-pill">Ping Identity (CIAM)</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Admin &amp; High-Privilege Access Control</span>
+        <span class="cap-cat-count">Controlling and auditing accounts with elevated access</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">BeyondTrust Password Safe</div>
+        <div class="cap-pill">BeyondTrust PAM</div>
+        <div class="cap-pill">CyberArk Privileged Access</div>
+        <div class="cap-pill">OneIdentity Safeguard</div>
+        <div class="cap-pill">OneIdentity TPAM</div>
+        <div class="cap-pill">Azure Key Vault</div>
+        <div class="cap-pill">AWS Secrets Manager</div>
+        <div class="cap-pill">Entra PIM</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Authentication Standards & Certificates</span>
+        <span class="cap-cat-count">The standards that make secure logins work across systems</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">SAML 2.0</div>
+        <div class="cap-pill">OAuth 2.0</div>
+        <div class="cap-pill">OpenID Connect (OIDC)</div>
+        <div class="cap-pill">WS-Federation</div>
+        <div class="cap-pill">FIDO2 / WebAuthn</div>
+        <div class="cap-pill">RADIUS</div>
+        <div class="cap-pill">PKI / X.509 Certificates</div>
+        <div class="cap-pill">JWT</div>
+        <div class="cap-pill">AD Certificate Services</div>
+        <div class="cap-pill">Azure Key Vault (PKI)</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Cloud Platforms</span>
+        <span class="cap-cat-count">Security across Amazon, Microsoft, and Google cloud environments</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">Microsoft Azure</div>
+        <div class="cap-pill">Azure AD / Entra ID</div>
+        <div class="cap-pill">Azure Sentinel</div>
+        <div class="cap-pill">Azure RBAC & Policy</div>
+        <div class="cap-pill">Azure Kubernetes Service</div>
+        <div class="cap-pill">AWS IAM</div>
+        <div class="cap-pill">AWS Organizations</div>
+        <div class="cap-pill">Amazon EC2 / Lambda</div>
+        <div class="cap-pill">GCP IAM</div>
+        <div class="cap-pill">GCP Security Command Center</div>
+        <div class="cap-pill">M365 / SharePoint</div>
+        <div class="cap-pill">Microsoft Intune</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Monitoring & Threat Detection</span>
+        <span class="cap-cat-count">Tools that detect threats and alert your security team</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">Splunk Enterprise Security</div>
+        <div class="cap-pill">Azure Sentinel</div>
+        <div class="cap-pill">CrowdStrike Falcon</div>
+        <div class="cap-pill">Microsoft Defender for Identity</div>
+        <div class="cap-pill">Secureworks Taegis</div>
+        <div class="cap-pill">Sophos MDR</div>
+        <div class="cap-pill">Carbon Black</div>
+        <div class="cap-pill">Varonis</div>
+        <div class="cap-pill">Palo Alto Networks</div>
+        <div class="cap-pill">Entra Identity Protection</div>
+        <div class="cap-pill">Nessus</div>
+        <div class="cap-pill">Checkpoint</div>
+      </div>
+    </div>
+
+    <div class="cap-category">
+      <div class="cap-cat-header">
+        <span class="cap-cat-name">Automation & Engineering Tools</span>
+        <span class="cap-cat-count">Used to build, automate, and manage security infrastructure</span>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-pill">Terraform</div>
+        <div class="cap-pill">AWS CloudFormation</div>
+        <div class="cap-pill">Azure Resource Manager</div>
+        <div class="cap-pill">Kubernetes</div>
+        <div class="cap-pill">Docker</div>
+        <div class="cap-pill">Azure DevOps</div>
+        <div class="cap-pill">CI/CD Pipelines</div>
+        <div class="cap-pill">PowerShell</div>
+        <div class="cap-pill">Python</div>
+        <div class="cap-pill">Bash</div>
+        <div class="cap-pill">REST APIs / JSON</div>
+        <div class="cap-pill">ServiceNow ITSM</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPLIANCE FRAMEWORKS -->
+<section class="section compliance-section">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><span>Compliance & Frameworks</span></div>
+    <h2 class="section-title">Regulatory requirements we've worked with — built in from the start, not added before the audit.</h2>
+    <p class="section-sub">If your industry has regulatory requirements — healthcare, finance, federal government — those requirements shape how we build the solution from day one. Not something we check against at the end.</p>
+    <div class="compliance-grid">
+      <div class="compliance-card">
+        <div class="compliance-name">NIST SP 800-53</div>
+        <p class="compliance-desc">Security and Privacy Controls for Federal Information Systems. Applied across federal agency engagements at DHS, Secret Service, and USPTO. Control implementation and continuous monitoring architecture.</p>
+        <span class="compliance-tag">Federal</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">NIST SP 800-207</div>
+        <p class="compliance-desc">Zero Trust Architecture. The framework applied to all Zero Trust engagements — not as a marketing term but as a defined architectural posture with measurable implementation criteria.</p>
+        <span class="compliance-tag">Architecture</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">FedRAMP</div>
+        <p class="compliance-desc">Federal Risk and Authorization Management Program. CIAM and authentication platform design aligned to FedRAMP authorization requirements. Continuous monitoring and evidence generation built into operations.</p>
+        <span class="compliance-tag">Federal</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">FISMA</div>
+        <p class="compliance-desc">Federal Information Security Modernization Act. Continuous monitoring architecture designed to make FISMA assessment preparation a reporting exercise rather than a retroactive data assembly effort.</p>
+        <span class="compliance-tag">Federal</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">HIPAA</div>
+        <p class="compliance-desc">Health Insurance Portability and Accountability Act. Identity provisioning and access governance for healthcare organizations. Applied at Fortune 50 scale across 32,000+ users in multi-country operations.</p>
+        <span class="compliance-tag">Healthcare</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">SOX (Sarbanes-Oxley)</div>
+        <p class="compliance-desc">Financial reporting controls and access governance. Segregation of duties enforcement and access certification automation aligned to SOX IT general controls requirements.</p>
+        <span class="compliance-tag">Financial</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">PCI DSS</div>
+        <p class="compliance-desc">Payment Card Industry Data Security Standard. Privileged access controls and identity governance for cardholder data environments. Access restriction and continuous monitoring alignment.</p>
+        <span class="compliance-tag">Financial</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">NIST 800-86</div>
+        <p class="compliance-desc">Guide to Integrating Forensic Techniques into Incident Response. Chain-of-custody workflow design and evidence preservation for legal and federal environments where integrity must be demonstrable.</p>
+        <span class="compliance-tag">Forensics</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">MITRE ATT&CK</div>
+        <p class="compliance-desc">Adversary tactics and techniques framework. Applied to control validation — ensuring implemented security controls address real adversary behavior patterns rather than satisfying compliance checkboxes disconnected from threat reality.</p>
+        <span class="compliance-tag">Threat Modeling</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">CIS Controls</div>
+        <p class="compliance-desc">Center for Internet Security Controls. Practical implementation guidance applied alongside NIST frameworks to prioritize security investments based on demonstrated risk reduction rather than theoretical coverage.</p>
+        <span class="compliance-tag">Baseline</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">ISO/IEC 27001</div>
+        <p class="compliance-desc">Information Security Management System standard. Identity security controls aligned to ISO 27001 for organizations seeking international information security management certification.</p>
+        <span class="compliance-tag">International</span>
+      </div>
+      <div class="compliance-card">
+        <div class="compliance-name">FFIEC / GLBA</div>
+        <p class="compliance-desc">Financial institution information security requirements. Identity and access governance controls for banking environments. Applied through Wells Fargo and financial services engagements.</p>
+        <span class="compliance-tag">Financial</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE MATRIX -->
+<section class="section matrix-section">
+  <div class="section-inner">
+    <div class="section-eyebrow"><div class="line"></div><span>Scale of Experience</span></div>
+    <h2 class="section-title">The scale of environments this has been applied in.</h2>
+    <p class="section-sub">Knowing which tools exist is different from having used them under real conditions, at real scale, with real consequences. These are the actual numbers.</p>
+    <div class="matrix-grid">
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Users Protected</div>
+        <span class="matrix-cell-value">32,000+</span>
+        <div class="matrix-cell-desc">Across enterprise and federal environments</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Cloud Platforms</div>
+        <span class="matrix-cell-value">3</span>
+        <div class="matrix-cell-desc">AWS, Azure, and GCP managed under unified identity frameworks</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Years of Practice</div>
+        <span class="matrix-cell-value">15+</span>
+        <div class="matrix-cell-desc">Across Fortune 500 enterprises and federal civilian agencies</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Excess Access Removed</div>
+        <span class="matrix-cell-value">70%+</span>
+        <div class="matrix-cell-desc">Admin accounts with unnecessary standing access — eliminated</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Federal Agencies</div>
+        <span class="matrix-cell-value">DHS · SS · USPTO · VA</span>
+        <div class="matrix-cell-desc">Public Trust clearance history across civilian federal environments</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Industry Verticals</div>
+        <span class="matrix-cell-value">8+</span>
+        <div class="matrix-cell-desc">Media, retail, financial, healthcare, legal, energy, automotive, federal</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Regulatory Frameworks</div>
+        <span class="matrix-cell-value">12+</span>
+        <div class="matrix-cell-desc">Including HIPAA, SOX, FedRAMP, NIST, PCI, and ISO 27001</div>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-cell-label">Monitored Systems</div>
+        <span class="matrix-cell-value">500+</span>
+        <div class="matrix-cell-desc">Hybrid systems under PAM session governance and behavioral analytics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">The tools matter less than the approach. Let's start with your situation.</h2>
+      <p class="cta-body">Tell us what you're working with and what's not working. We'll tell you honestly what would help.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:ronnie@cloudcentria.com" class="btn-white">Schedule a Free Conversation</a>
+      <a href="services.html" class="btn-outline-white">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">Cloudcentria <span>Security</span></div><p>Principal Identity Security Consulting. Serving Fortune 500 enterprises and federal agencies with Zero Trust architecture, PAM implementation, and identity governance.</p></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Privileged Access Management</a></li><li><a href="services.html">Zero Trust Architecture</a></li><li><a href="services.html">CIAM & Federation</a></li><li><a href="services.html">Identity Governance</a></li><li><a href="services.html">Security Observability</a></li></ul></div>
+      <div class="footer-col"><h4>Work</h4><ul><li><a href="cs_pam.html">PAM Case Study</a></li><li><a href="cs_ciam.html">CIAM Case Study</a></li><li><a href="cs_zerotrust.html">Zero Trust Case Study</a></li><li><a href="cs_observability.html">Observability Case Study</a></li><li><a href="cs_pki.html">PKI Case Study</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:ronnie@cloudcentria.com">ronnie@cloudcentria.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="insights.html">IAM Insights Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Cloudcentria Security. All rights reserved.</p><p><a href="#">Privacy Policy</a></p></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+</script>
+</body>
+</html>
