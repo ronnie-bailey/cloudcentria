@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Cloudcentria Security</title>
+<meta name="description" content="Cloudcentria Security is built from 15+ years of enterprise and federal identity security practice. Principal-level expertise. No junior staff. No vendor dependencies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:        #1A6B5A;
+  --teal-mid:    #22836E;
+  --teal-light:  #EAF4F0;
+  --teal-border: #C2DDD6;
+  --ink:         #0C1A17;
+  --ink-2:       #112019;
+  --text-h:      #111F1B;
+  --text-b:      #3E524D;
+  --text-m:      #7A8D87;
+  --surface:     #FFFFFF;
+  --surface-2:   #F5F8F7;
+  --border:      #E3EDEA;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--surface);color:var(--text-b);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 20px rgba(12,26,23,.07)}
+.nav-logo{display:flex;align-items:center}
+.nav-logo-mark,.nav-logo-text{display:none}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-size:.83rem;font-weight:500;color:var(--text-m);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.nav-cta{display:inline-flex;align-items:center;background:var(--teal);color:#fff!important;font-size:.8rem;font-weight:600;padding:.55rem 1.4rem;border-radius:100px;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--teal-mid);transform:translateY(-1px)}
+
+.page-hero{padding:9rem 3rem 5rem;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.page-hero-inner{max-width:1140px;margin:0 auto}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.08;letter-spacing:-.02em;color:var(--text-h);max-width:700px;margin-bottom:1.2rem}
+.page-hero h1 em{font-style:italic;color:var(--teal)}
+.page-hero p{font-size:1rem;font-weight:400;color:var(--text-m);max-width:600px;line-height:1.82}
+
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
+.eyebrow .line{width:28px;height:1.5px;background:var(--teal);flex-shrink:0;display:block}
+.eyebrow span{font-size:.67rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+
+.section{padding:6.5rem 3rem}
+.section-inner{max-width:1140px;margin:0 auto}
+h2.section-title,h2.engagement-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.7rem);line-height:1.12;letter-spacing:-.015em;color:var(--text-h);max-width:640px;margin-bottom:.9rem}
+h2.section-title em,h2.engagement-title em{font-style:italic;color:var(--teal)}
+.section-lead,.engagement-sub{font-size:.95rem;color:var(--text-m);max-width:560px;line-height:1.82;margin-bottom:3.5rem}
+
+.cta-section{background:var(--ink-2);padding:6rem 3rem}
+.cta-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.cta-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:.8rem;letter-spacing:-.01em}
+.cta-body{font-size:.93rem;color:rgba(255,255,255,.42);max-width:440px;line-height:1.78}
+.cta-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;background:#fff;color:var(--teal);font-size:.88rem;font-weight:600;padding:.85rem 2rem;border-radius:100px;transition:opacity .2s,transform .15s}
+.btn-white:hover{opacity:.92;transform:translateY(-1px)}
+.btn-outline-white{display:inline-flex;align-items:center;color:rgba(255,255,255,.5);font-size:.88rem;font-weight:500;border:1.5px solid rgba(255,255,255,.18);padding:.83rem 2rem;border-radius:100px;transition:border-color .2s,color .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal);color:#fff;font-size:.85rem;font-weight:600;padding:.78rem 1.8rem;border-radius:100px;transition:background .2s,transform .15s}
+.btn-teal:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;color:var(--teal);border:1.5px solid var(--teal-border);font-size:.85rem;font-weight:600;padding:.76rem 1.8rem;border-radius:100px;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--teal)}
+
+footer{background:var(--ink);padding:5rem 3rem 2.5rem}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:2rem}
+.footer-brand p{font-size:.82rem;color:rgba(255,255,255,.28);line-height:1.7;max-width:260px;margin-top:1rem}
+.footer-logo{margin-bottom:.3rem}
+.footer-col h4{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.2rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.footer-col ul li a{font-size:.84rem;color:rgba(255,255,255,.36);transition:color .2s}
+.footer-col ul li a:hover{color:rgba(255,255,255,.72)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.74rem;color:rgba(255,255,255,.18)}
+.footer-bottom a{color:rgba(255,255,255,.26)}
+
+.about-hero{padding:9rem 3rem 5rem;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.about-hero-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.1;letter-spacing:-.02em;color:var(--text-h);margin-bottom:1.2rem}
+.about-hero h1 em{font-style:italic;color:var(--teal)}
+.about-hero-lead{font-size:1rem;color:var(--text-m);line-height:1.82;margin-bottom:2rem}
+.about-hero-right{}
+.founder-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.founder-photo{width:100%;height:200px;background:linear-gradient(135deg,var(--teal) 0%,#0F4A3C 100%);display:flex;align-items:center;justify-content:center;position:relative}
+.founder-photo-placeholder{font-family:var(--serif);font-size:3rem;color:rgba(255,255,255,.7)}
+.founder-photo-label{position:absolute;bottom:.5rem;left:0;right:0;text-align:center;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.founder-info{padding:1.5rem}
+.founder-name{font-family:var(--serif);font-size:1.15rem;color:var(--text-h);margin-bottom:.2rem}
+.founder-title{font-size:.8rem;font-weight:600;color:var(--teal);margin-bottom:.8rem}
+.founder-credentials{display:flex;flex-direction:column;gap:.4rem}
+.founder-credential{font-size:.78rem;color:var(--text-m);border-left:2px solid var(--teal-border);padding-left:.7rem;line-height:1.4}
+
+.story-section{border-top:1px solid var(--border)}
+.story-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.story-text h3{font-family:var(--serif);font-size:1.8rem;color:var(--text-h);margin-bottom:1.2rem;line-height:1.2}
+.story-text h3 em{font-style:italic;color:var(--teal)}
+.story-text p{font-size:.95rem;color:var(--text-b);line-height:1.82;margin-bottom:1rem}
+.story-aside{position:sticky;top:7rem}
+.story-aside-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:1.6rem;margin-bottom:1.2rem}
+.story-aside-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;display:block}
+.story-aside-item{font-size:.83rem;color:var(--text-b);padding:.45rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+.story-aside-item:last-child{border-bottom:none}
+
+.mission-section{background:var(--surface-2);border-top:1px solid var(--border)}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:2.5rem}
+.value-card{background:var(--surface);padding:2rem 1.8rem;transition:background .2s}
+.value-card:hover{background:var(--teal-light)}
+.value-icon{width:28px;height:28px;background:var(--teal-light);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.value-icon svg{width:14px;height:14px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.value-title{font-size:.95rem;font-weight:600;color:var(--text-h);margin-bottom:.5rem}
+.value-desc{font-size:.85rem;color:var(--text-b);line-height:1.72}
+
+.timeline-section{border-top:1px solid var(--border)}
+.timeline-inner{max-width:860px;margin:0 auto}
+.timeline{display:flex;flex-direction:column;border-left:2px solid var(--teal-border);margin-left:1rem}
+.tl-item{position:relative;padding:0 0 2.5rem 2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-5px;top:.35rem;width:8px;height:8px;background:var(--teal);border-radius:50%}
+.tl-date{font-size:.68rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.tl-role{font-size:.97rem;font-weight:600;color:var(--text-h);margin-bottom:.2rem}
+.tl-org{font-size:.83rem;font-weight:500;color:var(--teal);margin-bottom:.5rem}
+.tl-desc{font-size:.84rem;color:var(--text-b);line-height:1.75}
+
+@media(max-width:1024px){.about-hero-inner{grid-template-columns:1fr}.story-inner{grid-template-columns:1fr}.story-aside{position:static}.values-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.about-hero,.story-section,.mission-section,.timeline-section,.cta-section{padding-left:1.5rem;padding-right:1.5rem}.about-hero{padding-top:7rem;padding-bottom:3.5rem}.values-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.cta-inner{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo">
+    <a href="cloudcentria_index.html" style="display:flex;align-items:center;color:var(--text-h);">
+      <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:34px;width:auto;">
+        <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="currentColor" letter-spacing="-0.4">Cloudcentria</text>
+        <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#1A6B5A" letter-spacing="4">SECURITY</text>
+      </svg>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="cloudcentria_index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="capabilities.html">Capabilities</a>
+    <a href="about.html" class="active">About</a>
+    <a href="insights.html">Insights</a>
+    <a href="mailto:ronnie@cloudcentria.com" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="about-hero-inner">
+    <div class="about-hero-left">
+      <div class="eyebrow"><div class="line"></div><span>About Cloudcentria</span></div>
+      <h1>This is a <em>principal-led practice.</em> Here's what that means.</h1>
+      <p>Cloudcentria is not a large firm. It's a specialized consulting practice built around one principal consultant — Ronnie Bailey — with 15+ years of hands-on experience inside Fortune 500 companies, federal agencies, and every environment type in between. When something broke at 2am and 32,000 people couldn't log in, that was his problem to solve. That experience is what you're engaging when you work with Cloudcentria.</p>
+      <p>What this means practically: there's no account manager who sells the engagement and hands it to someone else. No junior consultant assigned to do the actual work. The person you speak with in the first conversation is the person who designs the solution, implements it, and stands behind it. Engagements can bring in trusted specialists for specific workstreams, but the principal involvement and accountability doesn't change.</p>
+    </div>
+    <div class="about-hero-right">
+      <div class="founder-card">
+        <div class="founder-initial" style="position:relative;overflow:hidden;background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);">
+          <span style="font-family:var(--serif);font-size:2rem;color:rgba(255,255,255,0.9);">RB</span>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.3);font-size:0.55rem;font-weight:600;letter-spacing:0.05em;color:rgba(255,255,255,0.7);text-align:center;padding:0.2rem;text-transform:uppercase;">Add headshot</div>
+        </div>
+        <div class="founder-name">Ronnie Bailey</div>
+        <div class="founder-title">Founder · Principal Security Consultant</div>
+        <div class="founder-meta">
+          <div class="founder-meta-item">15+ years solving identity and access security problems</div>
+          <div class="founder-meta-item">Worked at Fortune 500 companies and U.S. federal agencies</div>
+          <div class="founder-meta-item">Security clearance history: DHS, Secret Service, USPTO</div>
+          <div class="founder-meta-item">Specialist in controlling who has access to what — and making sure that stays correct over time</div>
+          <div class="founder-meta-item">Works across cloud environments: Microsoft Azure, Amazon AWS, Google Cloud</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-body">
+      <p>The same pattern kept showing up in every organization. On paper, the security program looked solid — policies written, tools purchased, audits passed. In the actual environment, something different was true. Employees who left six months ago still had access. Admin passwords shared between four people. Security software installed but never configured to do what it was meant to do. The gap between the documented security posture and what was actually enforced — that's where every problem lived.</p>
+      <p>Closing that gap requires someone who understands both sides — what the policy says and what the environment actually does — and who can design the path from one to the other in a way the organization can realistically sustain without constant expert intervention.</p>
+      <p><strong>That's the work Cloudcentria does.</strong> Not assessments that produce a report and disappear. Not implementations that hand off a configured tool and leave you to figure out what it does. Work that fits how your organization actually operates, tested against real threats, and documented so your team can manage it going forward.</p>
+      <p>We don't have vendor partnerships that influence what we recommend. The right tool for your organization is determined by your environment, your budget, and what you're trying to accomplish — not by what we're incentivized to sell. Sometimes the right answer is a well-known enterprise platform. Sometimes it's a simpler solution. The recommendation follows the need.</p>
+      <p>The best security systems are the ones people don't have to think about. When the right behavior is also the easiest behavior — when logging in securely is as simple as logging in insecurely used to be — that's when security programs actually stick. That's what we build toward.</p>
+    </div>
+    <div class="story-aside">
+      <div class="aside-block">
+        <div class="aside-label">What makes us different</div>
+        <ul class="aside-list">
+          <li>Principal-led engagement — Ronnie Bailey is involved in every client relationship, not just the sales process</li>
+          <li>Trusted specialists brought in for specific workstreams when needed, under the same accountability standard</li>
+          <li>We recommend what's right for your situation, not what we're paid to sell</li>
+          <li>We understand your environment before recommending anything about it</li>
+          <li>We test controls against real attack scenarios — not just compliance checkboxes</li>
+          <li>Documentation your team can actually use after we're done</li>
+        </ul>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Sectors Served</div>
+        <p>Media & Entertainment · Federal Government · Financial Services · Healthcare · Legal · Energy · Retail · Automotive</p>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Federal Background</div>
+        <p>Public Trust clearance history through engagements at the Department of Homeland Security, United States Secret Service, USPTO, and Department of Veterans Affairs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VALUES -->
+<section class="section mission-section" style="background:var(--surface-2);border-top:1px solid var(--border);">
+  <div class="mission-inner">
+    <div class="mission-eyebrow"><div class="line"></div><span>Mission & Values</span></div>
+    <h2 class="mission-title">What we believe makes security work — <em>and what usually gets in the way.</em></h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-name">Your situation first</div>
+        <p class="value-desc">No two organizations are the same — not in size, not in how they operate, not in what they're up against. We don't apply the same approach to every client. We learn your situation before we recommend anything.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-name">No vendor commitments</div>
+        <p class="value-desc">We don't have financial relationships with the vendors we recommend. The right tool is the one that fits your environment, your budget, and how your team works. That's the only basis for the recommendation.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-name">Quick results, lasting foundation</div>
+        <p class="value-desc">Security takes time to get right. We sequence work so you see real improvement quickly — reducing the most immediate risks first — while building toward a foundation that holds up long-term.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-name">Proof, not promises</div>
+        <p class="value-desc">Saying your security is strong and being able to prove it are two different things. We build systems where the evidence is generated automatically — so when an auditor or executive asks, the answer is a report, not a conversation.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-name">Security that works with people, not against them</div>
+        <p class="value-desc">Security programs fail when they fight against how people actually work. The goal is systems where the secure option is also the easy option — so your team doesn't have to choose between doing their job and following security policy.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-name">We stand behind the work</div>
+        <p class="value-desc">Everything we build, we can explain, troubleshoot, and defend. If something breaks, we're not going to tell you to call the vendor. We designed it — we own the outcome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-inner">
+    <div class="tl-eyebrow"><div class="line"></div><span>Background</span></div>
+    <h2 class="tl-title">Where this experience comes from.</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2024 – Present</div>
+        <div class="tl-content">
+          <div class="tl-role">Senior Identity Protection Engineer</div>
+          <div class="tl-org">Major Media & Entertainment Enterprise</div>
+          <p class="tl-desc">Zero Trust framework design across Azure, GCP, and M365. BeyondTrust PAM integration with Entra ID. Federation and certificate lifecycle management for 32,000+ users. Conditional access tuning, SAML/OIDC renewal, and hybrid identity synchronization.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div class="tl-content">
+          <div class="tl-role">Lead Identity Security Architect</div>
+          <div class="tl-org">Global Legal Information Provider & U.S. Patent and Trademark Office</div>
+          <p class="tl-desc">CIAM platform design using Auth0 and Microsoft Identity Platform. Threat detection via CrowdStrike and Palo Alto Networks. MITRE ATT&CK aligned security posture assessment. FedRAMP and NIST 800-53 aligned authentication architecture for 15,000+ external users.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2022 – 2024</div>
+        <div class="tl-content">
+          <div class="tl-role">Principal IAM Security Architect</div>
+          <div class="tl-org">Fortune 50 Retail Enterprise</div>
+          <p class="tl-desc">OneIdentity Safeguard and TPAM PAM implementation for 32,000+ users across U.S. and U.K. operations. Okta SSO/MFA deployment across 40+ applications. Entra ID modernization and AKS workload identity federation. HIPAA and NIST 800-53 compliance posture.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Prior Roles</div>
+        <div class="tl-content">
+          <div class="tl-role">Identity & Access Management Architect</div>
+          <div class="tl-org">DHS OCIO · U.S. Secret Service · USPTO · U.S. Department of Veterans Affairs · Wells Fargo · Indivior · Westinghouse Nuclear · Lithia Motors · City of Chesapeake</div>
+          <p class="tl-desc">ICAM architecture and implementation across federal civilian agencies and regulated private sector organizations. NIST 800-53, FedRAMP, FISMA, SOX, GLBA, and PCI compliance contexts. Hybrid identity environments spanning on-premises Active Directory, Azure AD, and multiple cloud platforms.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Founded</div>
+        <div class="tl-content">
+          <div class="tl-role">Principal Consultant · Founder</div>
+          <div class="tl-org">Cloudcentria Security</div>
+          <p class="tl-desc">Identity security consulting practice focused on enterprise and federal environments. PAM implementation, Zero Trust architecture, CIAM design, IGA governance, and security observability. Staff augmentation and advisory services for organizations that need principal-level identity expertise without a full-time headcount commitment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">Want to talk through your situation directly?</h2>
+      <p class="cta-body">The first call is with Ronnie, not a sales rep. Describe what's going on — we'll tell you honestly whether and how we can help, and what a realistic first step looks like.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:ronnie@cloudcentria.com" class="btn-white">Schedule a Conversation</a>
+      <a href="services.html" class="btn-outline-white">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">
+        <svg viewBox="0 0 210 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cloudcentria Security" style="height:32px;width:auto;">
+          <text x="0" y="22" font-family="DM Serif Display, Georgia, serif" font-size="21" font-weight="400" fill="white" letter-spacing="-0.4">Cloudcentria</text>
+          <text x="1" y="35" font-family="DM Sans, system-ui, sans-serif" font-size="8" font-weight="600" fill="#2A8A72" letter-spacing="4">SECURITY</text>
+        </svg>
+      </div><p>Principal Identity Security Consulting. Serving Fortune 500 enterprises and federal agencies with Zero Trust architecture, PAM implementation, and identity governance.</p></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Privileged Access Management</a></li><li><a href="services.html">Zero Trust Architecture</a></li><li><a href="services.html">CIAM & Federation</a></li><li><a href="services.html">Identity Governance</a></li><li><a href="services.html">Security Observability</a></li></ul></div>
+      <div class="footer-col"><h4>Work</h4><ul><li><a href="cs_pam.html">PAM Case Study</a></li><li><a href="cs_ciam.html">CIAM Case Study</a></li><li><a href="cs_zerotrust.html">Zero Trust Case Study</a></li><li><a href="cs_observability.html">Observability Case Study</a></li><li><a href="cs_pki.html">PKI Case Study</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:ronnie@cloudcentria.com">ronnie@cloudcentria.com</a></li><li><a href="#">LinkedIn</a></li><li><a href="insights.html">IAM Insights Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Cloudcentria Security. All rights reserved.</p><p><a href="#">Privacy Policy</a></p></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+</script>
+</body>
+</html>
